@@ -28,7 +28,7 @@ bool Snake::otherArrowsClicked( sf::Keyboard::Key k )
 void Snake::processInput()
 {
 	if( sf::Keyboard::isKeyPressed( sf::Keyboard::Up ) && dir != Direction::DOWN && !otherArrowsClicked( sf::Keyboard::Up ) ) dir = Direction::UP;
-	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) && dir != Direction::UP && !otherArrowsClicked( sf::Keyboard::Down ) )	dir = Direction::DOWN;
+	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) && dir != Direction::UP && !otherArrowsClicked( sf::Keyboard::Down ) ) dir = Direction::DOWN;
 	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Left ) && dir != Direction::RIGHT && !otherArrowsClicked( sf::Keyboard::Left ) ) dir = Direction::LEFT;
 	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Right ) && dir != Direction::LEFT && !otherArrowsClicked( sf::Keyboard::Right ) ) dir = Direction::RIGHT;
 }
