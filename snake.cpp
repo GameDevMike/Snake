@@ -14,12 +14,23 @@ Snake::~Snake()
 {
 }
 
+bool Snake::otherArrowsClicked( sf::Keyboard::Key k )
+{
+	switch( k )
+	{
+	case sf::Keyboard::Up: return sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Left ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Right );
+	case sf::Keyboard::Down: return sf::Keyboard::isKeyPressed( sf::Keyboard::Up ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Left ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Right );
+	case sf::Keyboard::Left: return sf::Keyboard::isKeyPressed( sf::Keyboard::Up ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Right );
+	case sf::Keyboard::Right: return sf::Keyboard::isKeyPressed( sf::Keyboard::Up ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Left );
+	}
+}
+
 void Snake::processInput()
 {
-	if( sf::Keyboard::isKeyPressed( sf::Keyboard::Up ) && dir != Direction::DOWN ) dir = Direction::UP;
-	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) && dir != Direction::UP )	dir = Direction::DOWN;
-	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Left ) && dir != Direction::RIGHT ) dir = Direction::LEFT;
-	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Right ) && dir != Direction::LEFT ) dir = Direction::RIGHT;
+	if( sf::Keyboard::isKeyPressed( sf::Keyboard::Up ) && dir != Direction::DOWN && !otherArrowsClicked( sf::Keyboard::Up ) ) dir = Direction::UP;
+	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Down ) && dir != Direction::UP && !otherArrowsClicked( sf::Keyboard::Down ) )	dir = Direction::DOWN;
+	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Left ) && dir != Direction::RIGHT && !otherArrowsClicked( sf::Keyboard::Left ) ) dir = Direction::LEFT;
+	else if( sf::Keyboard::isKeyPressed( sf::Keyboard::Right ) && dir != Direction::LEFT && !otherArrowsClicked( sf::Keyboard::Right ) ) dir = Direction::RIGHT;
 }
 
 void Snake::drawSnake( Window &window )

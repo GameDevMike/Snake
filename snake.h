@@ -37,6 +37,7 @@ private:
 	void moveBody();
 	void updatePrevPos();
 	void expand();
+	bool otherArrowsClicked( sf::Keyboard::Key k );
 
 public:
 	Snake();
